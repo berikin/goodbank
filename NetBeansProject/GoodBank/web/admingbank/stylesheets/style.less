@@ -1,0 +1,171 @@
+@import 'colors.less'; //Base colors
+@import 'bones_base.less'; //Reset and basic styles
+@import 'bones.less'; //The grid system
+
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+//
+// PLACE THE STYLE HERE
+// @author: José Antonio Yáñez Jiménez
+// http://www.jimenezfrontend.es
+// @date: 4/11/2013
+//
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+//
+// BASE STYLE
+// @author: José Antonio Yáñez Jiménez
+// http://www.jimenezfrontend.es
+// @date: 4/11/2013
+//
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+
+@font-face {
+	font-family: 'Russo One';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Russo One'), local('RussoOne-Regular'), url(russo-one.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Droid Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Droid Sans'), local('DroidSans'), url(droid.woff) format('woff');
+}
+
+
+body {
+	font-family: 'Droid Sans';
+	color: @pure-black;
+	background-color: @white;
+}
+
+h1 {
+	margin: 0;
+	padding: 5px;
+	text-align: left;
+	text-transform: uppercase;
+	font-family: 'Russo One';
+	color: @white;
+	background-color: @strong-purple;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+h2 {
+    width:inherit;
+    position: fixed;
+    z-index: 2;
+	padding: 5px;
+	text-align: left;
+	font-family: 'Russo One';
+	color: @white;
+	background-color: @strong-purple;
+	box-shadow: 0 7px 5px @transparent-semiblack-40;
+}
+
+footer {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	padding: 20px;
+	height: 80px;
+	margin-top: 50px;
+	text-align: justify;
+	color: @white;
+	background-color: @strong-purple;
+	width: 100%;
+	position:fixed;
+	left:0;
+	bottom:0;
+	box-shadow: 0 -7px 5px @transparent-semiblack-40;
+}
+
+footer a {
+	display: block;
+	text-decoration: none;
+	color: @white;
+}
+
+.box {
+	width: 150px;
+	height: 170px;
+	margin-top: 20px !important;
+	margin-bottom: 20px !important;
+	border-radius: 10px;
+	text-align: center;
+	color: @white;
+	background-color: @strong-purple;
+	transition: background-color,linear,300ms;
+}
+
+.box:hover {
+	background-color: @hover-light-purple;
+	transition: background-color,linear,300ms;
+}
+
+article h1,article h2{
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-bottom: 20px;
+}
+
+nav a{
+	text-align: right;
+	display: block;
+	margin-right: 10px;
+	margin-left: 10px;
+	padding: 10px;
+	font-weight: bold;
+	text-decoration: none;
+	transition: background-color,linear,600ms;
+	transition: color,linear,600ms;
+	border-radius: 10px;
+}
+
+nav a:hover{
+	background-color: @strong-purple; 
+	color: @white;
+	transition: background-color,linear,600ms;
+	transition: color,linear,600ms;
+	transition: border-radius,linear,600ms;
+}
+
+input[type="text"], input[type="password"], input[type="email"], textarea, select{
+	transition: border,linear,600ms;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus, select:focus{
+	transition: border,linear,600ms;
+}
+
+.container{
+	margin-bottom: 130px;
+}
+
+header{
+    z-index: 2;
+    position: fixed;
+    cursor: default;
+	top: 0;
+	left: 0;
+	width: 100%;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	box-shadow: 0 7px 5px @transparent-semiblack-40;
+}
+
+div.sixteen.columns{
+    margin-top: 60px !important; //ESTE MARGEN ES POR EL HEADER
+}
+
+a{
+	text-decoration: none !important;
+}
+.headerSpace{
+	height: 70px;
+}

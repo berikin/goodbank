@@ -10,7 +10,30 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Auth
     {
+    private String rawString;
+    private String shaString;
 
+    public Auth()
+	{
+	}
+
+    public void setRawString(String rawString)
+	{
+	this.rawString = rawString;
+	}
+
+    public void calculateSHA512()
+	{
+	this.shaString = generateSHA(this.rawString);
+	}
+
+    
+    public String getshaString()
+	{
+	return shaString;
+	}
+    
+    
     static String generateSHA(String rawInput)
 	{
 	MessageDigest md;
