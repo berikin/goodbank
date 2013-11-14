@@ -12,8 +12,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>El banco bueno - Administración</title>
 	<link rel="stylesheet" href="stylesheets/style.css" type="text/css"/>
+	<link rel="stylesheet" href="stylesheets/jquery-ui.css" type="text/css"/>
+	<script src="scripts/jquery-1.9.1.js"></script>
+	<script src="scripts/jquery-ui.js"></script>
+	<script src="scripts/script.js"></script>
     </head>
     <body>
-    <header>
-	<h1>El banco bueno - Administración</h1>
-    </header>
+	<header>
+	    <h1>El banco bueno - Administración</h1>
+	</header>
