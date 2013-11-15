@@ -8,6 +8,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<c:if test="${logged==true}">
+    <c:redirect url="controlpanel.jsp" />
+</c:if>
 <c:if test="${not empty param.loginSend}">
     <%-- DATOS DE CONEXIÓN SQL --%>
     <c:import url="dbinfo.jsp"/>
@@ -34,6 +37,7 @@
 	    <c:set var="bankManager" value="${row.manager_id}" scope="session" />
 	    <c:set var="bankManagerRange" value="${row.manager_range}" scope="session" />
 	</c:forEach>
+	<c:set var="logged" value="${true}" scope="session" />
 	<c:redirect url="controlpanel.jsp" />
     </c:if>
     <%--

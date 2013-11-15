@@ -145,5 +145,5 @@ VALUES
 #* Managers
 #***********************************************************
 
-INSERT INTO `managers` (`id_card`, `name`, `lastname_first`, `lastname_second`, `birth_date`, `street_type`, `address`, `province`, `community`, `phone_number`, `manager_range`, `password`) VALUES ('83373738A', 'Super Admin', 'Boss', 'Manager', '1998-05-16', '8', 'Falsa', '47', '7', '983121212', '3', '5fc2ca6f085919f2f77626f1e280fab9cc92b4edc9edc53ac6eee3f72c5c508e869ee9d67a96d63986d14c1c2b82c35ff5f31494bea831015424f59c96fff664');
+INSERT INTO `managers` (`manager_id`,`id_card`, `name`, `lastname_first`, `lastname_second`, `birth_date`, `street_type`, `address`, `province`, `community`, `phone_number`, `manager_range`, `password`) VALUES (1,'83373738A', 'Super Admin', 'Boss', 'Manager', '1998-05-16', '8', 'Falsa', '47', '7', '983121212', '3', '5fc2ca6f085919f2f77626f1e280fab9cc92b4edc9edc53ac6eee3f72c5c508e869ee9d67a96d63986d14c1c2b82c35ff5f31494bea831015424f59c96fff664');
 

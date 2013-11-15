@@ -66,13 +66,13 @@
 				Agrega un administrador
 			    </div>
 			</a>
-			<a href="#2">
+			<a href="editmanager.jsp">
 			    <div class="four columns centered box">
 				<img src="img/alteruser.png" alt="Añadir" /><br />
 				Modifica un administrador
 			    </div>
 			</a>
-			<a href="#1">
+			<a href="deletemanager.jsp">
 			    <div class="four columns centered box">
 				<img src="img/lessuser.png" alt="Añadir" /><br />
 				Elimina un administrador

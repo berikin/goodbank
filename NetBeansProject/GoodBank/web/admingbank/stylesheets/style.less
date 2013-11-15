@@ -114,24 +114,43 @@ article h1,article h2{
 	margin-bottom: 20px;
 }
 
-nav a{
+a{
+	text-decoration: none!important;
+}
+
+.navlink{
 	text-align: right;
 	display: block;
+	border-bottom: 2px @strong-purple solid;
+	transition: color,linear,600ms;
+	transition: border,linear,600ms;
+}
+.navOver{
+	border-bottom: 2px @light-purple solid;
+	transition: border,linear,600ms;
+	transition: color,linear,600ms;
+}
+
+.navlink:hover{
+	.navOver();
+}
+
+nav a{
+	.navlink();
 	margin-right: 10px;
 	margin-left: 10px;
+	margin-bottom: 5px;
 	padding: 10px;
 	font-weight: bold;
-	text-decoration: none;
 	transition: background-color,linear,600ms;
-	transition: color,linear,600ms;
 	border-radius: 10px;
 }
 
 nav a:hover{
+	.navOver();
 	background-color: @strong-purple; 
 	color: @white;
 	transition: background-color,linear,600ms;
-	transition: color,linear,600ms;
 	transition: border-radius,linear,600ms;
 }
 
@@ -163,9 +182,39 @@ div.sixteen.columns{
     margin-top: 60px !important; //ESTE MARGEN ES POR EL HEADER
 }
 
-a{
-	text-decoration: none !important;
-}
 .headerSpace{
 	height: 70px;
+}
+
+#wrong{
+	background-color: @transparent-red-50;
+	border-radius: 20px;
+}
+
+#wrong p,#wrong ul{
+	padding: 15px;
+}
+#wrong ul{
+	margin-bottom: 0;
+}
+#wronglist li{
+	list-style: disc;
+	list-style-position: inside;
+}
+
+.confirmation{
+	display: none;
+}
+
+.widthtotal{
+	width: inherit !important;
+}
+
+.ui-datepicker-year{
+	display: inline !important;
+	height: 31px;
+}
+
+div.one-third.column.invisible{
+	display: none;
 }

@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
         <title>El banco bueno - Administración</title>
 	<link rel="stylesheet" href="stylesheets/style.css" type="text/css"/>
 	<link rel="stylesheet" href="stylesheets/jquery-ui.css" type="text/css"/>

@@ -25,6 +25,37 @@ function validatePhone(val){
 	}
 }
 
+function validateRepeatedDNI(value) {
+	var returnVal = true;
+	$.ajax({
+				async: false,
+				url: "jQuerySelectManagers.jsp",
+				type: "POST",
+				data: "dni="+value,
+				success: function(result) {
+					var wee="hola";
+					var values=result.split("$");
+					var dni=values[0];
+				    var managers = values[1].split("#");
+				    var managerinfo = [];
+				    for (i = 0; i < managers.length; i++)
+				    {
+					var dataA = managers[i].split(",");
+					    managerinfo[i]=dataA;
+				    }
+				    for (i = 0; i < managerinfo.length; i++)
+				    {
+				    	//alert((managerinfo[i][1]==(dni.trim())))
+						if(managerinfo[i][1]==(dni.trim()))
+						{
+							returnVal=false;
+						}
+				    }
+				}
+			    });
+	return returnVal;
+}
+
 function validateNDI(value) { 
 		var cadenadni="TRWAGMYFPDXBNJZSQVHLCKET";
 		var let = value.substr(value.length-1,1);
@@ -52,24 +83,31 @@ function validateNDI(value) {
 function checkNewManager(e){
 	var validForm=[];
 	var dni=$('#managerIdCard').val();
+	if(dni.length>0)
+	{
+	if(validateRepeatedDNI(dni)==false)
+		{
+		validForm.push("Usuario existente (Ya existe un administrador con este DNI)");
+		}
+	}
 	if((dni.length)<9 || validateNDI(dni)==false)
 		{
-		validForm.push("dni");
+		validForm.push("DNI (debe tener ocho caracteres más la letra correspondiente)");
 		}
 	var name=$('#managerName').val();
 	if((name.length)<2)
 		{
-		validForm.push("nombre");
+		validForm.push("nombre (de al menos dos caracteres)");
 		}
 	var lname1=$('#managerLastNameFirst').val();
 	if((lname1.length)<2)
 		{
-		validForm.push("primer apellido");
+		validForm.push("primer apellido (de al menos dos caracteres)");
 		}
 	var lname2=$('#managerLastNameSecond').val();
 	if((lname2.length)<2)
 		{
-		validForm.push("segundo apellido");
+		validForm.push("segundo apellido (de al menos dos caracteres)");
 		}
 	var date=$('#managerBirthDate').val();
 	if(validateDate(date)==false)
@@ -79,21 +117,27 @@ function checkNewManager(e){
 	var address=$('#managerAddress').val();
 	if((address.length)<2)
 		{
-		validForm.push("dirección");
+		validForm.push("dirección (de al menos dos caracteres)");
 		}
 	var phone=$('#managerPhone').val();
 	if(validatePhone(phone)==false)
 		{
-		validForm.push("teléfono");
+		validForm.push("teléfono (código de país seguido del número de teléfono, sin espacios)");
 		}
 	var phone=$('#managerPassword').val();
 	if(validatePassword(phone)==false)
 		{
-		validForm.push("clave");
+		validForm.push("clave (longitud mínima de ocho caracteres con al menos una mayúscula, una minúscula, un número y un carácter especial)");
 		}
 	if((validForm.length)!=0)
 	{
-		alert(validForm);
 		e.preventDefault();
+		$('#wrong').html('');
+		$('#wrong').append('<p>Algunos campos no son correctos:</p>');
+		$('#wrong').append('<ul id="wronglist">');
+		for (i=0;i<(validForm.length);i++)
+			{
+				$('#wronglist').append('<li>'+validForm[i]+'</li>');
+			}
 	}
 }
