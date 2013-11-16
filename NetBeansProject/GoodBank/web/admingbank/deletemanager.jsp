@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:if test="${not empty bankManager}">
+<c:if test="${not empty bankManager && bankManagerRange>1}">
     <c:if test="${not empty param.delManagerSwitch}">
 	<c:import url="header.jsp"/>
 	<c:import url="dbinfo.jsp"/>
@@ -38,7 +38,7 @@
 				   user="${sqluser}"
 				   password="${sqlpwd}" />
 		<sql:query var="cdr" dataSource="${db}">
-		    SELECT managers.manager_id,managers.id_card,managers.name,managers.lastname_first,managers.lastname_second,manager_ranges.title FROM managers,manager_ranges WHERE managers.manager_range=manager_ranges.range_id;
+		    SELECT managers.manager_id,managers.id_card,managers.name,managers.lastname_first,managers.lastname_second,manager_ranges.title,managers.manager_range FROM managers,manager_ranges WHERE managers.manager_range=manager_ranges.range_id;
 		</sql:query>
 		<c:if test="${cdr.rowCount>1}">
 		    <div class="two-thirds column">
@@ -47,8 +47,15 @@
 			    <label for="delManagerSwitch">Administrador a eliminar</label>
 			    <select class="widthtotal" name="delManagerSwitch" id="delManagerSwitch">
 				<c:forEach var="row" items="${cdr.rows}">
-				    <c:if test="${row.manager_id!=1}">
-					<option value="${row.manager_id}">(${row.id_card}) ${row.name} ${row.lastname_first} ${row.lastname_second} (nivel ${row.title})</option>
+				    <c:if test="${bankManagerRange!=2}">
+					<c:if test="${row.manager_id!=1}">
+					    <option value="${row.manager_id}">(${row.id_card}) ${row.name} ${row.lastname_first} ${row.lastname_second} (nivel ${row.title})</option>
+					</c:if>
+				    </c:if>
+				    <c:if test="${bankManagerRange==2}">
+					<c:if test="${row.manager_id!=1 && row.manager_range<2}">
+					    <option value="${row.manager_id}">(${row.id_card}) ${row.name} ${row.lastname_first} ${row.lastname_second} (nivel ${row.title})</option>
+					</c:if>
 				    </c:if>
 				</c:forEach>
 			    </select>
@@ -61,6 +68,7 @@
 		</c:if>
 		<c:if test="${cdr.rowCount<2}">
 		    <div class="two-thirds column">
+			<h2>Eliminar un administrador</h2>
 			<div class="headerSpace"></div>
 			<p>No hay administradores para eliminar</p>
 		    </div>
@@ -77,5 +85,6 @@
 	<c:import url="footer.jsp"/>
     </c:if>
 </c:if>
-<c:if test="${empty bankManager}">
+<c:if test="${empty bankManager or bankManagerRange==1}">
+    <c:redirect url="index.jsp" />
 </c:if>

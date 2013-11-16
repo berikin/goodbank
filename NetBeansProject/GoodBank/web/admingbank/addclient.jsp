@@ -14,14 +14,14 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:requestEncoding value="UTF-8"/>
 <c:if test="${not empty bankManager && bankManagerRange>1}">
-    <c:if test="${not empty param.managerSend}">
+    <c:if test="${not empty param.clientSend}">
 	<c:import url="header.jsp" charEncoding="UTF-8"/>
 	<%-- INSTANCIAMOS EL BEAN DE AUTENTICACIÓN --%>
-	<jsp:useBean id="manager"  scope="session" class="es.bancobueno.beans.Auth" />
+	<jsp:useBean id="client"  scope="session" class="es.bancobueno.beans.Auth" />
 	<%-- ASIGNAMOS LA CLAVE SIN CIFRAR AL BEAN --%>
-	<jsp:setProperty name="manager" property="rawString" value="${param.managerPassword}" />
+	<jsp:setProperty name="client" property="rawString" value="${param.clientPassword}" />
 	<%-- CIFRAMOS LA CLAVE --%>
-	${manager.calculateSHA512()}
+	${client.calculateSHA512()}
 	<%-- DATOS DE CONEXIÓN SQL --%>
 	<c:import url="dbinfo.jsp"/>
 	<sql:setDataSource var="db"
@@ -32,67 +32,67 @@
 	<%
 	    SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 	    SimpleDateFormat date2 = new SimpleDateFormat("yyyy-MM-dd");
-	    Date newDate = date.parse(request.getParameter("managerBirthDate"));
+	    Date newDate = date.parse(request.getParameter("clientBirthDate"));
 	    pageContext.setAttribute("newDate", date2.format(newDate));
 	%>
 	<sql:update var="insert" dataSource="${db}">
-	    INSERT INTO managers (id_card,name,lastname_first,lastname_second,birth_date,street_type,address,province,community,phone_number,manager_range,password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
-	    <sql:param value="${param.managerIdCard}" />
-	    <sql:param value="${param.managerName}" />
-	    <sql:param value="${param.managerLastNameFirst}" />
-	    <sql:param value="${param.managerLastNameSecond}" />
+	    INSERT INTO clients (id_card,name,lastname_first,lastname_second,birth_date,street_type,address,province,community,phone_number,client_range,password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+	    <sql:param value="${param.clientIdCard}" />
+	    <sql:param value="${param.clientName}" />
+	    <sql:param value="${param.clientLastNameFirst}" />
+	    <sql:param value="${param.clientLastNameSecond}" />
 	    <sql:param value="${newDate}" />
-	    <sql:param value="${param.managerStreetType}" />
-	    <sql:param value="${param.managerAddress}" />
-	    <sql:param value="${param.managerProvince}" />
-	    <sql:param value="${param.managerCommunity}" />
-	    <sql:param value="${param.managerPhone}" />
-	    <sql:param value="${param.managerRange}" />
-	    <sql:param value="${manager.getshaString()}" />
+	    <sql:param value="${param.clientStreetType}" />
+	    <sql:param value="${param.clientAddress}" />
+	    <sql:param value="${param.clientProvince}" />
+	    <sql:param value="${param.clientCommunity}" />
+	    <sql:param value="${param.clientPhone}" />
+	    <sql:param value="${param.clientRange}" />
+	    <sql:param value="${client.getshaString()}" />
 	</sql:update>
 	<sql:query var="StreetType" dataSource="${db}">
 	    SELECT * FROM street_types WHERE type_id=?
-	    <sql:param value="${param.managerStreetType}" />
+	    <sql:param value="${param.clientStreetType}" />
 	</sql:query>
 	<sql:query var="Community" dataSource="${db}">
 	    SELECT * FROM communities WHERE community_id=?
-	    <sql:param value="${param.managerCommunity}" />
+	    <sql:param value="${param.clientCommunity}" />
 	</sql:query>
 	<sql:query var="Province" dataSource="${db}">
 	    SELECT * FROM provinces WHERE province_id=?
-	    <sql:param value="${param.managerProvince}" />
+	    <sql:param value="${param.clientProvince}" />
 	</sql:query>
 	<sql:query var="Range" dataSource="${db}">
-	    SELECT * FROM manager_ranges WHERE range_id=?
-	    <sql:param value="${param.managerRange}" />
+	    SELECT * FROM client_ranges WHERE range_id=?
+	    <sql:param value="${param.clientRange}" />
 	</sql:query>
 	<article class="container">
 	    <div class="sixteen columns">
-		<h2>Administrador con DNI ${param.managerIdCard} añadido correctamente</h2>
+		<h2>Cliente con DNI ${param.clientIdCard} añadido correctamente</h2>
 		<div class="headerSpace"></div>
 		<div class="two-thirds column">
 		    <p>
 			Detalles:
 		    </p>
 		    <ul>
-			<li>DNI: ${param.managerIdCard}</li>  
-			<li>Nombre: ${param.managerName}</li>  
-			<li>Primer apellido: ${param.managerLastNameFirst}</li>  
-			<li>Segundo apellido: ${param.managerLastNameSecond}</li>  
-			<li>Fecha de nacimiento: ${param.managerBirthDate}</li>  
+			<li>DNI: ${param.clientIdCard}</li>  
+			<li>Nombre: ${param.clientName}</li>  
+			<li>Primer apellido: ${param.clientLastNameFirst}</li>  
+			<li>Segundo apellido: ${param.clientLastNameSecond}</li>  
+			<li>Fecha de nacimiento: ${param.clientBirthDate}</li>  
 			    <c:forEach var="row" items="${StreetType.rows}">
 			    <li>Tipo de vía: ${row.type}</li>  
 			    </c:forEach>
-			<li>Resto de la dirección: ${param.managerAddress}</li>  
+			<li>Resto de la dirección: ${param.clientAddress}</li>  
 			    <c:forEach var="row" items="${Province.rows}">
 			    <li>Provincia: ${row.province}</li>  
 			    </c:forEach>
 			    <c:forEach var="row" items="${Community.rows}">
 			    <li>Comunidad autónoma: ${row.community}</li>  
 			    </c:forEach>
-			<li>Teléfono: ${param.managerPhone}</li>  
+			<li>Teléfono: ${param.clientPhone}</li>  
 			    <c:forEach var="row" items="${Range.rows}">
-			    <li>Rango del administrador: ${row.title}</li>  
+			    <li>Rango del cliente: ${row.title}</li>  
 			    </c:forEach>
 		    </ul>
 		</div>
@@ -101,7 +101,7 @@
 		</div>
 		<c:import url="footer.jsp" charEncoding="UTF-8"/>
 	    </c:if>
-	    <c:if test="${empty param.managerSend}">
+	    <c:if test="${empty param.clientSend}">
 
 		<c:choose>
 		    <c:when test="${fn:contains(header['User-Agent'],'MSIE')}">
@@ -124,26 +124,26 @@
 		<article class="container">
 		    <div class="sixteen columns">
 			<div class="two-thirds colum">
-			    <h2>Agrega un administrador</h2>
+			    <h2>Agrega un cliente</h2>
 			</div>
-			<form name="newManagerForm" id="newManagerForm" action="addmanager.jsp" method="POST">
+			<form name="newClientForm" id="newClientForm" action="addclient.jsp" method="POST">
 			    <div class="one-third column">
 				<div class="headerSpace"></div>
-				<label for="managerIdCard">DNI</label><input type="text" placeholder="DNI del administrador" name="managerIdCard" id="managerIdCard" required="required" />
-				<label for="managerName">Nombre</label><input type="text" placeholder="Nombre de administrador" name="managerName" id="managerName" required="required" />
-				<label for="managerLastNameFirst">Primer apellido</label><input type="text" placeholder="Primer apellido del administrador" name="managerLastNameFirst" id="managerLastNameFirst" required="required" />
-				<label for="managerLastNameSecond">Segundo apellido</label><input type="text" placeholder="Segundo apellido del administrador" name="managerLastNameSecond" id="managerLastNameSecond" required="required" />
+				<label for="clientIdCard">DNI</label><input type="text" placeholder="DNI del cliente" name="clientIdCard" id="clientIdCard" required="required" />
+				<label for="clientName">Nombre</label><input type="text" placeholder="Nombre de cliente" name="clientName" id="clientName" required="required" />
+				<label for="clientLastNameFirst">Primer apellido</label><input type="text" placeholder="Primer apellido del cliente" name="clientLastNameFirst" id="clientLastNameFirst" required="required" />
+				<label for="clientLastNameSecond">Segundo apellido</label><input type="text" placeholder="Segundo apellido del cliente" name="clientLastNameSecond" id="clientLastNameSecond" required="required" />
 				<c:choose>
 				    <c:when test="${bankUserAgent=='chrome' }">
-					<label for="managerBirthDate">Fecha de nacimiento</label><input type="date" placeholder="fecha de nacimiento del administrador" name="managerBirthDate" id="managerBirthDate" required="required" />
+					<label for="clientBirthDate">Fecha de nacimiento</label><input type="date" placeholder="fecha de nacimiento del cliente" name="clientBirthDate" id="clientBirthDate" required="required" />
 				    </c:when>
 				    <c:otherwise>
 					<script>
 					    $(function() {
-						$("#managerBirthDate").datepicker({yearRange: "1930:1998", changeYear: true, defaultDate: new Date(1988, 4, 16)});
+						$("#clientBirthDate").datepicker({yearRange: "1930:1998", changeYear: true, defaultDate: new Date(1988, 4, 16)});
 					    });
 					</script>
-					<label for="managerBirthDate">Fecha de nacimiento</label><input type="text" placeholder="fecha de nacimiento del administrador" name="managerBirthDate" id="managerBirthDate" required="required" />
+					<label for="clientBirthDate">Fecha de nacimiento</label><input type="text" placeholder="fecha de nacimiento del cliente" name="clientBirthDate" id="clientBirthDate" required="required" />
 				    </c:otherwise>
 				</c:choose>
 				<%-- DATOS DE CONEXIÓN SQL --%>
@@ -156,8 +156,8 @@
 				<sql:query var="cdr" dataSource="${db}">
 				    SELECT * FROM street_types;
 				</sql:query>
-				<label for="managerStreetType">Tipo de vía</label>
-				<select name="managerStreetType" id="managerStreetType">
+				<label for="clientStreetType">Tipo de vía</label>
+				<select name="clientStreetType" id="clientStreetType">
 				    <c:forEach var="row" items="${cdr.rows}">
 					<c:if test="${row.type_id==8}">
 					    <option value="${row.type_id}" selected="selected">${row.type}</option>
@@ -167,16 +167,16 @@
 					</c:if>
 				    </c:forEach>
 				</select>
-				<input type="submit" name="managerSend" id="managerSend" value="Registrar administrador" />
+				<input type="submit" name="clientSend" id="clientSend" value="Registrar cliente" />
 			    </div>
 			    <div class="one-third column">
 				<div class="headerSpace"></div>
-				<label for="managerAddress">Dirección</label><input type="text" placeholder="Resto de la dirección" name="managerAddress" id="managerAddress" required="required" />
+				<label for="clientAddress">Dirección</label><input type="text" placeholder="Resto de la dirección" name="clientAddress" id="clientAddress" required="required" />
 				<sql:query var="cdr" dataSource="${db}">
 				    SELECT * FROM provinces;
 				</sql:query>
-				<label for="managerProvince">Provincia</label>
-				<select name="managerProvince" id="managerProvince">
+				<label for="clientProvince">Provincia</label>
+				<select name="clientProvince" id="clientProvince">
 				    <c:forEach var="row" items="${cdr.rows}">
 					<c:if test="${row.province_id==47}">
 					    <option value="${row.province_id}" selected="selected">${row.province}</option>
@@ -189,8 +189,8 @@
 				<sql:query var="cdr" dataSource="${db}">
 				    SELECT * FROM communities;
 				</sql:query>
-				<label for="managerCommunity">Comunidad</label>
-				<select name="managerCommunity" id="managerCommunity">
+				<label for="clientCommunity">Comunidad</label>
+				<select name="clientCommunity" id="clientCommunity">
 				    <c:forEach var="row" items="${cdr.rows}">
 					<c:if test="${row.community_id==7}">
 					    <option value="${row.community_id}" selected="selected">${row.community}</option>
@@ -200,24 +200,22 @@
 					</c:if>
 				    </c:forEach>
 				</select>
-				<label for="managerPhone">Teléfono</label><input type="number" placeholder="Teléfono del administrador" name="managerPhone" id="managerPhone" value="34" required="required" />
+				<label for="clientPhone">Teléfono</label><input type="number" placeholder="Teléfono del cliente" name="clientPhone" id="clientPhone" value="34" required="required" />
 				<sql:query var="cdr" dataSource="${db}">
-				    SELECT * FROM manager_ranges;
+				    SELECT * FROM client_ranges;
 				</sql:query>
-				<label for="managerRange">Rango del administrador</label>
-				<select name="managerRange" id="managerRange">
+				<label for="clientRange">Rango del cliente</label>
+				<select name="clientRange" id="clientRange">
 				    <c:forEach var="row" items="${cdr.rows}">
 					<c:if test="${row.range_id==1}">
 					    <option value="${row.range_id}" selected="selected">${row.title}</option>
 					</c:if>
-					<c:if test="${bankManagerRange!=2}">
-					    <c:if test="${row.range_id!=1}">
-						<option value="${row.range_id}">${row.title}</option>
-					    </c:if>
+					<c:if test="${row.range_id!=1}">
+					    <option value="${row.range_id}">${row.title}</option>
 					</c:if>
 				    </c:forEach>					
 				</select>
-				<label for="managerPassword">Clave</label><input type="password" placeholder="Clave del administrador" name="managerPassword" id="managerPassword" required="required" />
+				<label for="clientPassword">Clave</label><input type="password" placeholder="Clave del cliente" name="clientPassword" id="clientPassword" required="required" />
 			    </div>
 			    <div class="one-third column">
 				<c:import url="dashboard.jsp"/>
@@ -226,15 +224,15 @@
 			</form>
 		    </div>
 		</article>
-		<script src="scripts/validatenewmanager.js" type="text/javascript"></script>
+		<script src="scripts/validatenewclient.js" type="text/javascript"></script>
 		<script>
-					    $('#newManagerForm').submit(function(e) {
-						checkNewManager(e);
+					    $('#newClientForm').submit(function(e) {
+						checkNewClient(e);
 					    });
 		</script>
 		<c:import url="footer.jsp" charEncoding="UTF-8" />
 	    </c:if>
 	</c:if>
-<c:if test="${empty bankManager || bankManagerRange==1}">
-    <c:redirect url="index.jsp" />
-</c:if>
+	<c:if test="${empty bankManager || bankManagerRange==1}">
+	    <c:redirect url="index.jsp" />
+	</c:if>

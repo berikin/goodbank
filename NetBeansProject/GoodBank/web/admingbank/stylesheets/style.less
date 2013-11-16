@@ -144,6 +144,11 @@ nav a{
 	font-weight: bold;
 	transition: background-color,linear,600ms;
 	border-radius: 10px;
+	display: block;
+}
+nav{
+	position: fixed;
+	width: inherit;
 }
 
 nav a:hover{
@@ -215,6 +220,27 @@ div.sixteen.columns{
 	height: 31px;
 }
 
-div.one-third.column.invisible{
+div.one-third.column.invisible,div.one-semithird.column.invisible,section.one-third.column.invisible{
 	display: none;
+}
+
+
+.exitIcon{
+    z-index: 3;
+    position: fixed;
+    right: 30px;
+    top: 5px;
+}
+
+.exitIconH{
+    z-index: 5;
+    position: fixed;
+    right: 30px;
+    top: 5px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.exitIconH:hover{
+    opacity: 1;
 }

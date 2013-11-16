@@ -96,7 +96,7 @@ CREATE TABLE `managers`(
 	`address` VARCHAR(150) NOT NULL,
 	`province` INT(6) UNSIGNED NOT NULL,
 	`community` INT(4) UNSIGNED NOT NULL,
-	`phone_number` INT(9) UNSIGNED NOT NULL,
+	`phone_number` BIGINT(11) UNSIGNED NOT NULL,
 	`manager_range` INT(4) UNSIGNED NOT NULL,
 	`password` VARCHAR(128) NOT NULL,
 	PRIMARY KEY(`manager_id`)
@@ -154,7 +154,7 @@ CREATE TABLE `clients`(
 	`address` VARCHAR(150) NOT NULL,
 	`province` INT(6) UNSIGNED NOT NULL,
 	`community` INT(4) UNSIGNED NOT NULL,
-	`phone_number` INT(9) UNSIGNED NOT NULL,
+	`phone_number` BIGINT(11) UNSIGNED NOT NULL,
 	`client_range` INT(4) UNSIGNED NOT NULL,
 	`password` VARCHAR(128) NOT NULL,
 	PRIMARY KEY(`client_id`)
@@ -208,7 +208,7 @@ CREATE TABLE `branches`(
 	`address` VARCHAR(150) NOT NULL,
 	`province` INT(6) UNSIGNED NOT NULL,
 	`community` INT(4) UNSIGNED NOT NULL,
-	`phone_number` INT(9) UNSIGNED NOT NULL,
+	`phone_number` BIGINT(11) UNSIGNED NOT NULL,
 	`manager` BIGINT UNSIGNED NOT NULL,
 	PRIMARY KEY(`branch_id`)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -256,7 +256,7 @@ ADD CONSTRAINT `branches_external_manager`
 
 CREATE TABLE `accounts`(
 	`account_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	`account_number` INT(10) UNSIGNED NOT NULL,
+	`account_number` BIGINT(10) UNSIGNED NOT NULL,
 	`branch` BIGINT UNSIGNED NOT NULL,
 	`creation_date` DATE NOT NULL,
 	`account_type` INT(6) UNSIGNED NOT NULL,

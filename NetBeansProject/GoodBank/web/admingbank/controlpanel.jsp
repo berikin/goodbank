@@ -35,28 +35,61 @@
 	    <c:choose>
 		<c:when test="${bankManagerRange==1}">
 		    <section class="sixteen columns centered">
-			<a href="#3">
+			<a href="addclient.jsp">
 			    <div class="four columns centered box">
 				<img src="img/adduser.png" alt="Añadir" /><br />
 				Agrega un cliente
 			    </div>
 			</a>
-			<a href="#2">
+			<a href="editclient.jsp">
 			    <div class="four columns centered box">
 				<img src="img/alteruser.png" alt="Añadir" /><br />
 				Modifica un cliente
 			    </div>
 			</a>
-			<a href="#1">
+		    </section>
+		</c:when>
+		<c:when test="${bankManagerRange==2}">
+		    <section class="sixteen columns centered">
+			<a href="addclient.jsp">
+			    <div class="four columns centered box">
+				<img src="img/adduser.png" alt="Añadir" /><br />
+				Agrega un cliente
+			    </div>
+			</a>
+			<a href="editclient.jsp">
+			    <div class="four columns centered box">
+				<img src="img/alteruser.png" alt="Añadir" /><br />
+				Modifica un cliente
+			    </div>
+			</a>
+			<a href="deleteclient.jsp">
 			    <div class="four columns centered box">
 				<img src="img/lessuser.png" alt="Añadir" /><br />
 				Elimina un cliente
 			    </div>
 			</a>
 		    </section>
-		</c:when>
-		<c:when test="${bankManagerRange==2}">
-
+		    <section class="sixteen columns centered">
+			<a href="addmanager.jsp">
+			    <div class="four columns centered box">
+				<img src="img/adduser.png" alt="Añadir" /><br />
+				Agrega un administrador
+			    </div>
+			</a>
+			<a href="editmanager.jsp">
+			    <div class="four columns centered box">
+				<img src="img/alteruser.png" alt="Añadir" /><br />
+				Modifica un administrador
+			    </div>
+			</a>
+			<a href="deletemanager.jsp">
+			    <div class="four columns centered box">
+				<img src="img/lessuser.png" alt="Añadir" /><br />
+				Elimina un administrador
+			    </div>
+			</a>
+		    </section>
 		</c:when>
 		<c:when test="${bankManagerRange==3}">
 		    <section class="sixteen columns centered">

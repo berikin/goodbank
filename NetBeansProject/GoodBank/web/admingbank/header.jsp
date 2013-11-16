@@ -6,6 +6,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,3 +22,7 @@
 	<header>
 	    <h1>El banco bueno - Administración</h1>
 	</header>
+	<c:if test="${logged==true}">
+	    <img src="img/exit.png" alt="Salir" class="exitIcon" />
+	    <a href="logout.jsp"><img src="img/exit_hover.png" alt="Salir" class="exitIconH" /></a>
+	</c:if>

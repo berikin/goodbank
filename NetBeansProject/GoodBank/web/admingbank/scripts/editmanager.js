@@ -6,18 +6,20 @@ function editManager(value) {
 				type: "POST",
 				data: "edit="+value,
 				success: function(result) {
-				    var managers = result.split("#");
-				    	$('#managerIdCard').attr('value', managers[1]);
-				    	$('#managerName').attr('value', managers[2]);
-				    	$('#managerLastNameFirst').attr('value', managers[3]);
-				    	$('#managerLastNameSecond').attr('value', managers[4]);
-				    	$('#managerBirthDate').attr('value', managers[5]);
-				    	$('#managerStreetType').attr('value', managers[6]);
-				    	$('#managerAddress').attr('value', managers[7]);
-				    	$('#managerProvince').attr('value', managers[8]);
-				    	$('#managerCommunity').attr('value', managers[9]);
-						$('#managerPhone').attr('value', managers[10]);
-				    	$('#managerRange').attr('value', managers[11]);
+				    var managers = (result.trim()).split(",");
+				    	$('#managerIdCard').val(managers[1]);
+				    	$('#managerPwdIdCard').val(managers[1]);
+				    	$('#managerName').val(managers[2]);
+				    	$('#managerLastNameFirst').val(managers[3]);
+				    	$('#managerLastNameSecond').val(managers[4]);
+				    	var date=managers[5].split("-");
+				    	$('#managerBirthDate').val(date[2]+"/"+date[1]+"/"+date[0]);
+				    	$('#managerStreetType').val(managers[6]);
+				    	$('#managerAddress').val(managers[7]);
+				    	$('#managerProvince').val(managers[8]);
+				    	$('#managerCommunity').val(managers[9]);
+						$('#managerPhone').val(managers[10]);
+				    	$('#managerRange').val(managers[11]);
 				    }
 			    });
 }
