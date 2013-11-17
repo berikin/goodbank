@@ -11,18 +11,21 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>El banco bueno - Administración</title>
+        <title>El banco bueno</title>
 	<link rel="stylesheet" href="stylesheets/style.css" type="text/css"/>
 	<link rel="stylesheet" href="stylesheets/jquery-ui.css" type="text/css"/>
+	<link rel="stylesheet" href="stylesheets/jquery-contextMenu.css" type="text/css"/>
 	<script src="scripts/jquery-1.9.1.js"></script>
 	<script src="scripts/jquery-ui.js"></script>
+	<script src="scripts/jquery-ui-position.js"></script>
+	<script src="scripts/jquery-contextMenu.js"></script>
 	<script src="scripts/script.js"></script>
     </head>
     <body>
 	<header>
-	    <h1>El banco bueno - Administración</h1>
+	    <h1>El banco bueno</h1>
 	</header>
-	<c:if test="${bankManagerLogged==true}">
+	<c:if test="${bankClientLogged==true}">
 	    <img src="img/exit.png" alt="Salir" class="exitIcon" />
-	    <a href="logout.jsp"><img src="img/exit_hover.png" alt="Salir" class="exitIconH" /></a>
+	    <a href="logout.jsp" title="logout"><img src="img/exit_hover.png" alt="Salir" class="exitIconH" /></a>
 	</c:if>

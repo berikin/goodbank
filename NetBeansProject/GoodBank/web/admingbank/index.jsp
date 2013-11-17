@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<c:if test="${logged==true}">
+<c:if test="${bankManagerLogged==true}">
     <c:redirect url="controlpanel.jsp" />
 </c:if>
 <c:if test="${not empty param.loginSend}">
@@ -37,24 +37,25 @@
 	    <c:set var="bankManager" value="${row.manager_id}" scope="session" />
 	    <c:set var="bankManagerRange" value="${row.manager_range}" scope="session" />
 	</c:forEach>
-	<c:set var="logged" value="${true}" scope="session" />
+	<c:set var="bankManagerLogged" value="${true}" scope="session" />
 	<c:redirect url="controlpanel.jsp" />
     </c:if>
     <%--
     SI NO SE HA PRODUCIDO LA REDIRECCIÓN ES PORQUE EL USUARIO NO EXISTE
     POR TANTO INSTANCIAMOS EL ERROR DE LOGIN
     --%>
-    <c:set var="logged" value="${false}" scope="session" />
+    <c:set var="bankManagerLogged" value="${false}" scope="session" />
 </c:if>
 <c:if test="${empty param.loginSend || logged==false}">
     <c:import url="header.jsp"/>
     <c:import url="dbinfo.jsp"/>
     <article class="container">
 	<div class="sixteen columns">
-	    <c:if test="${logged==false}">
+	    <c:if test="${bankManagerLogged==false}">
 		<h2>Has intentado acceder con unos datos incorrectos</h2>
 		<div class="headerSpace"></div>
-		<c:set var="logged" value="${null}" scope="session" />
+		<c:set var="bankManagerLogged" value="${null}" scope="session" />
+		<c:remove var="bankManagerLogged" />
 	    </c:if>
 	    <div class="sixteen columns">
 		<form method="POST" action="index.jsp">
