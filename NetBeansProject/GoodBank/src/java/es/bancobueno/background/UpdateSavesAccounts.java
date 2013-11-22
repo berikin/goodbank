@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.bancobueno.servlets;
+package es.bancobueno.background;
 
 import java.math.BigDecimal;
 import java.util.TimerTask;

@@ -60,6 +60,7 @@ h1 {
 h2 {
     width:inherit;
     position: fixed;
+    font-size: 1.2em;
     z-index: 2;
 	padding: 5px;
 	text-align: left;
@@ -257,8 +258,42 @@ div.one-third.column.invisible,div.one-semithird.column.invisible,section.one-th
 	width: inherit;
 	height: 300px;
 	overflow-y: scroll;
+	margin-bottom: 50px;
 }
 
-table{
+.movements thead{
 	width: inherit;
+}
+
+#totalMoney{
+	cursor: default;
+}
+
+.movements tbody{
+	width: inherit;
+	position: absolute;
+	overflow-y: scroll;
+	max-height: 290px;
+	margin-top: 20px;
+}
+
+.movements tbody td,.movements tr,.movements th{
+	width: inherit;
+}
+
+#myTable{
+	width: inherit !important;
+}
+
+tr.even td,tr.even:hover td,tr.odd td,tr.odd:hover td{
+	cursor: default;
+	transition: background-color,linear,300ms !important;
+}
+tr.even:hover td,tr.odd:hover td{
+	font-weight: bold;
+}
+
+td{
+	vertical-align: bottom;
+	padding: 10px 5px 10px 5px !important;
 }

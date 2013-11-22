@@ -78,6 +78,26 @@ CREATE TABLE `account_types` (
 	PRIMARY KEY(`type_id`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
+#***********************************************************
+#*
+#* Table Account Interest
+#*
+#***********************************************************
+CREATE TABLE `account_interest` (
+	`interest_id` INT(4) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`account_type` INT(6) UNSIGNED NOT NULL,
+	`interest` FLOAT(4,2) NOT NULL DEFAULT 0.00,
+	PRIMARY KEY(`interest_id`)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+ALTER TABLE `account_interest` 
+ADD INDEX `interest_external_account_type_idx` (`account_type` ASC);
+ALTER TABLE `account_interest` 
+ADD CONSTRAINT `interest_external_account_type`
+	FOREIGN KEY (`account_type`)
+	REFERENCES `account_types` (`type_id`)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE;
 
 #***********************************************************
 #*

@@ -150,6 +150,15 @@ VALUES
 (2,'Cuenta nómina plus'),
 (3,'Cuenta ahorro platino');
 
+#***********************************************************
+#* Account interests
+#***********************************************************
+
+INSERT INTO `account_interest` (`interest_id`,`account_type`, `interest`)
+VALUES
+(1,1,2.20),
+(2,2,3.40),
+(3,3,3.75);
 
 #***********************************************************
 #* Managers
@@ -166,7 +175,7 @@ INSERT INTO `managers` (`manager_id`,`id_card`, `name`, `lastname_first`, `lastn
 
 INSERT INTO `clients` (`client_id`,`id_card`, `name`, `lastname_first`, `lastname_second`, `birth_date`, `street_type`, `address`, `province`, `community`, `phone_number`, `client_range`, `password`) VALUES (1,'62581737W', 'Juan', 'Benito', 'Marín', '1985-10-12', '16', 'Cuatro caminos 3 4B', '47', '7', '34666787834', '1', '7469eb3dc5848b1dadd0f638a95cf4e4f0d6246717d5dc92e77b80f5199182b0f2cc1bb86c9187666b90aca27372cdb03d22689a9343c5a96993bb1782f7a67d');
 INSERT INTO `clients` (`client_id`,`id_card`, `name`, `lastname_first`, `lastname_second`, `birth_date`, `street_type`, `address`, `province`, `community`, `phone_number`, `client_range`, `password`) VALUES (2,'54325661Y', 'Teresa', 'Luenco', 'Pérez', '1986-04-22', '8', 'Tenerife 2 1B', '47', '7', '34646482831', '2', '7469eb3dc5848b1dadd0f638a95cf4e4f0d6246717d5dc92e77b80f5199182b0f2cc1bb86c9187666b90aca27372cdb03d22689a9343c5a96993bb1782f7a67d');
-INSERT INTO `clients` (`client_id`,`id_card`, `name`, `lastname_first`, `lastname_second`, `birth_date`, `street_type`, `address`, `province`, `community`, `phone_number`, `client_range`, `password`) VALUES (3,'37532591H', 'Juan', 'Benito', 'Marín', '1985-10-12', '6', 'Trinidad 1 2B', '28', '13', '34666787834', '2', '7469eb3dc5848b1dadd0f638a95cf4e4f0d6246717d5dc92e77b80f5199182b0f2cc1bb86c9187666b90aca27372cdb03d22689a9343c5a96993bb1782f7a67d');
+INSERT INTO `clients` (`client_id`,`id_card`, `name`, `lastname_first`, `lastname_second`, `birth_date`, `street_type`, `address`, `province`, `community`, `phone_number`, `client_range`, `password`) VALUES (3,'37532591H', 'Manuel', 'López', 'Hernández', '1978-10-12', '6', 'Trinidad 1 2B', '28', '13', '34666787834', '2', '7469eb3dc5848b1dadd0f638a95cf4e4f0d6246717d5dc92e77b80f5199182b0f2cc1bb86c9187666b90aca27372cdb03d22689a9343c5a96993bb1782f7a67d');
 
 #***********************************************************
 #* Branches

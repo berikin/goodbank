@@ -48,19 +48,23 @@
     **
     ********************************************************--%>
     <c:import url="header.jsp"/>
+    <script type="text/javascript" src="scripts/jquery.tablesorter.min.js"></script>
+    <script src="scripts/jquery.tablesorter.widgets.min.js"></script>
     <article class="container">
 	<div class="sixteen columns centered">
 	    <c:forEach var="row" items="${account.rows}">
 		<div class="two-thirds column">
-		    <h2 id="htitle">Detalles de tu ${row.type}</h2>
+		    <h2 id="htitle">Movimientos de tu ${row.type}</h2>
 		    <div class="headerSpace"></div>
 		    <div class="movements" id="movementDetails"></div>
+		    <h3 id="totalMoney"></h3>
 		</div>
 		<script src="scripts/transactionhistory.js"></script>
 		<script>
+		    var total=0;
 		    $(document).ready(function() {
-		    getTransactions(${row.account_id});
-		    setInterval("getTransactions(${row.account_id})", (1000*60*3));
+		    total=getTransactions(${row.account_id},total);
+		    setInterval(function(){total=getTransactions(${row.account_id},total);}, (30000));
 		    });
 		</script>
 		<c:import url="dashboard.jsp" charEncoding="UTF-8" />
