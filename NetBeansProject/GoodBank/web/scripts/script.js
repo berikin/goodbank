@@ -10,9 +10,26 @@ $(function(){
                 alert('clicked '+key);
                 break;
                 case "movements":
-                $().redirect('movements.jsp', {'account': this.attr('title')});
+                $().redirect('movements.jsp', {'account': this.attr('accid')});
                 break;
                 case "accinfo":
+                    var wWidth = $(window).width();
+                    var dWidth = wWidth * 0.8;
+                    $( "#dialog" ).load('conditions/'+this.attr('acctype')+'.md');
+                    $( "#dialog" ).dialog({
+                        show: {
+                            effect: "fade",
+                            duration: 500
+                        },
+                        hide: {
+                            effect: "fade",
+                            duration: 1000
+                        },
+                        position: 'top',
+                        width: dWidth,
+                        modal: true,
+                        close: function(){$( "#dialog" ).html('');}
+                    });
                 break;
             }
         },

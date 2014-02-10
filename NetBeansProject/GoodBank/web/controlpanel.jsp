@@ -99,18 +99,20 @@
 		<div class="sixteen columns centered">
 		    <section class="sixteen columns centered">
 			<c:forEach var="row" items="${accountsFirst.rows}" varStatus="theCount">
-			    <a href="#" id="link${theCount.index}" class="accountFirst context-menu-one" title="${row.account_number}">
 				    <c:if test="${row.type=='Cuenta morada'}">
+					<a href="#" id="link${theCount.index}" class="accountFirst context-menu-one" acctype="morada" accid="${row.account_number}">
 					<div class="four columns centered box">
 					<img src="img/purpleaccount.png" alt="Añadir" /><br />
 					Cuenta morada
 				    </c:if>
 				    <c:if test="${row.type=='Cuenta nómina plus'}">
+					<a href="#" id="link${theCount.index}" class="accountFirst context-menu-one" acctype="nomina" accid="${row.account_number}">
 					<div class="four columns centered box-plus">
 					<img src="img/salaryaccount.png" alt="Añadir" /><br />
 					Cuenta nómina plus
 				    </c:if>
 				    <c:if test="${row.type=='Cuenta ahorro platino'}">
+					<a href="#" id="link${theCount.index}" class="accountFirst context-menu-one" acctype="platino" accid="${row.account_number}">
 					<div class="four columns centered box-platinum">
 					<img src="img/savesaccount.png" alt="Añadir" /><br />
 					Cuenta ahorro platino
@@ -123,6 +125,7 @@
 	    </c:if>
 	</div>
     </article>
+    <div id="dialog" style="display:none;"></div>
     <c:import url="footer.jsp"/>
 </c:if>
 <c:if test="${empty bankClient}">

@@ -13,12 +13,12 @@
         <meta charset="UTF-8">
         <title>El banco bueno</title>
 	<link rel="stylesheet" href="stylesheets/style.css" type="text/css"/>
-	<link rel="stylesheet" href="stylesheets/jquery-ui.css" type="text/css"/>
+	<link rel="stylesheet" href="stylesheets/eggplant/jquery-ui-1.10.3.custom.min.css" type="text/css"/>
 	<link href="stylesheets/theme.default.css" rel="stylesheet">
 	<link rel="stylesheet" href="stylesheets/theme.bootstrap.css" type="text/css"/>
 	<link rel="stylesheet" href="stylesheets/jquery-contextMenu.css" type="text/css"/>
 	<script src="scripts/jquery-1.9.1.js"></script>
-	<script src="scripts/jquery-ui.js"></script>
+	<script src="scripts/jquery-ui.min.js"></script>
 	<script src="scripts/jquery-ui-position.js"></script>
 	<script src="scripts/jquery-contextMenu.js"></script>
 	<script src="scripts/script.js"></script>
