@@ -24,5 +24,9 @@
 	    <a href="deleteclient.jsp">Elimina un cliente</a>
 	    <hr />
 	</c:if>
+	<c:if test="${bankManagerRange<3}">
+	    <a href="addaccount.jsp">Agrega una cuenta</a>
+	    <hr />
+	</c:if>
     </nav>
 </div>

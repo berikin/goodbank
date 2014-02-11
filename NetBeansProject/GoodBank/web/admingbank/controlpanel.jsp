@@ -48,6 +48,14 @@
 			    </div>
 			</a>
 		    </section>
+		    <section class="sixteen columns centered">
+			<a href="addaccount.jsp">
+			    <div class="four columns centered box">
+				<img src="img/addaccount.png" alt="Añadir" /><br />
+				Agrega una cuenta
+			    </div>
+			</a>
+		    </section>
 		</c:when>
 		<c:when test="${bankManagerRange==2}">
 		    <section class="sixteen columns centered">
@@ -73,20 +81,28 @@
 		    <section class="sixteen columns centered">
 			<a href="addmanager.jsp">
 			    <div class="four columns centered box">
-				<img src="img/adduser.png" alt="Añadir" /><br />
+				<img src="img/addadmin.png" alt="Añadir" /><br />
 				Agrega un administrador
 			    </div>
 			</a>
 			<a href="editmanager.jsp">
 			    <div class="four columns centered box">
-				<img src="img/alteruser.png" alt="Añadir" /><br />
+				<img src="img/alteradmin.png" alt="Modificar" /><br />
 				Modifica un administrador
 			    </div>
 			</a>
 			<a href="deletemanager.jsp">
 			    <div class="four columns centered box">
-				<img src="img/lessuser.png" alt="Añadir" /><br />
+				<img src="img/lessadmin.png" alt="Eliminar" /><br />
 				Elimina un administrador
+			    </div>
+			</a>
+		    </section>
+		    <section class="sixteen columns centered">
+			<a href="addaccount.jsp">
+			    <div class="four columns centered box">
+				<img src="img/addaccount.png" alt="Eliminar" /><br />
+				Agrega una cuenta
 			    </div>
 			</a>
 		    </section>
@@ -95,19 +111,19 @@
 		    <section class="sixteen columns centered">
 			<a href="addmanager.jsp">
 			    <div class="four columns centered box">
-				<img src="img/adduser.png" alt="Añadir" /><br />
+				<img src="img/addadmin.png" alt="Añadir" /><br />
 				Agrega un administrador
 			    </div>
 			</a>
 			<a href="editmanager.jsp">
 			    <div class="four columns centered box">
-				<img src="img/alteruser.png" alt="Añadir" /><br />
+				<img src="img/alteradmin.png" alt="Modificar" /><br />
 				Modifica un administrador
 			    </div>
 			</a>
 			<a href="deletemanager.jsp">
 			    <div class="four columns centered box">
-				<img src="img/lessuser.png" alt="Añadir" /><br />
+				<img src="img/lessadmin.png" alt="Eliminar" /><br />
 				Elimina un administrador
 			    </div>
 			</a>
