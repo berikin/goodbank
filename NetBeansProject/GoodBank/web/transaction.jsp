@@ -49,19 +49,55 @@
     ********************************************************--%>
     <c:import url="header.jsp"/>
     <article class="container">
-	<div class="sixteen columns centered">
+	<div class="sixteen columns">
 	    <c:forEach var="row" items="${account.rows}">
 		<div class="two-thirds column">
 		    <h2 id="htitle">Nueva transferencia de tu ${row.type}</h2>
 		    <div class="headerSpace"></div>
-		    <div class="transaction" id="transactionDetails">
-			
+		    <div class="transaction sixteen columns" id="transactionDetails">
+			<form name="newTransaction" id="newTransaction" action="transaction.jsp" method="POST">
+			    <div class="one-third column">
+				<div class="headerSpace"></div>
+				<%-- DATOS DE CONEXIÓN SQL --%>
+				<c:import url="dbinfo.jsp"/>
+				<sql:setDataSource var="db"
+						   driver="${jdbcdriver}"
+						   url="${sqlurl}"
+						   user="${sqluser}"
+						   password="${sqlpwd}" />
+				<sql:query var="cdr" dataSource="${db}">
+				    SELECT account_types.type, accounts.account_id, accounts.account_number, accounts.amount FROM accounts, account_types WHERE accounts.account_type = account_types.type_id AND (accounts.client_id = ${bankClient} OR accounts.second_client_id = ${bankClient} OR accounts.third_client_id = ${bankClient});
+				</sql:query>
+				<label for="trasanctionOrigin">Cuenta de origen</label>
+				<select name="trasanctionOrigin" id="trasanctionOrigin">
+				    <c:forEach var="row" items="${cdr.rows}">
+					<c:if test="${row.account_id==1}">
+					    <option value="${row.account_id}" data-amount="${row.amount}" selected="selected">${row.type} (${row.account_number})</option>
+					</c:if>
+					<c:if test="${row.account_id!=1}">
+					    <option value="${row.account_id}" data-amount="${row.amount}">${row.type} (${row.account_number})</option>
+					</c:if>
+				    </c:forEach>
+				</select>
+				<input type="submit" name="transactionSend" id="transactionSend" value="Registrar transación" />
+			    </div>
+			    <div class="one-third column">
+				<div class="headerSpace"></div>
+				<input type="hidden" value="${bankClient}" id="transactionClient" name="transactionClient" />
+				<label for="trasanctionDestiny">Cuenta de destino</label><input type="text" placeholder="20 dígitos" name="trasanctionDestiny" id="trasanctionDestiny" required="required" />
+				<label for="transactionAmount">Cantidad a transferir</label><input type="number" placeholder="Cantidad en euros" name="transactionAmount" id="transactionAmount" required="required" />
+			    </div>
+			</form>
 		    </div>
-		    <h3 id="totalMoney"></h3>
+
+
 		</div>
+		<div class="one-third column">
+		    <c:import url="dashboard.jsp"/>
+		</div>
+		<div class="sixteen columns"><section class="two-thirds columns" id="wrong"></section></div>
 		<script>
 		</script>
-		<c:import url="dashboard.jsp" charEncoding="UTF-8" />
 	    </c:forEach>
 	</div>
     </article>
